@@ -8,6 +8,7 @@ export type PaginatedDatabaseResponse = {
 }
 
 export interface IDatabase {
+  connect(): Promise<void>;
   /**
    * Retrieves a single record from the database using the id (primary key)
    * as the lookup key. Returns null if the record does not exist.
