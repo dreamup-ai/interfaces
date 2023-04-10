@@ -5,6 +5,10 @@ export type PaginatedDatabaseResponse = {
     items: DatabaseRecord[];
     last: string | null;
 };
+declare enum SortDirection {
+    ASC = "ASC",
+    DESC = "DESC"
+}
 export interface IDatabase {
     /**
      * Perform any necessary initialization and connect to the database.
@@ -34,10 +38,16 @@ export interface IDatabase {
      */
     getMany(ids: string[]): Promise<PaginatedDatabaseResponse>;
     /**
-     * Pulls records from the database using an arbitrary query.
-     * @param query An object containing the query parameters
+     * Retrieves a paginated list of records from the database.
+     * @param params Configuration object for the query
      */
-    query(query: any): Promise<PaginatedDatabaseResponse>;
+    query(params: {
+        query: any;
+        last: string;
+        pageSize: number;
+        sortKey: string;
+        sortDir: SortDirection;
+    }): Promise<PaginatedDatabaseResponse>;
     /**
      * Creates a new record in the database. Fails if the record
      * already exists.
@@ -108,3 +118,4 @@ export interface IDatabase {
      */
     removeFromSet(id: string, key: string, value: any): Promise<DatabaseRecord>;
 }
+export {};
