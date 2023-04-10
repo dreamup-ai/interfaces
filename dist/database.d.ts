@@ -1,10 +1,10 @@
-export type DatabaseRecord = {
+export interface DatabaseRecord {
     id: string;
-};
-export type PaginatedDatabaseResponse = {
+}
+export interface PaginatedDatabaseResponse {
     items: DatabaseRecord[];
     last: string | null;
-};
+}
 export declare enum SortDirection {
     ASC = "ASC",
     DESC = "DESC"
