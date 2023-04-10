@@ -13,6 +13,12 @@ export interface IDatabase {
    * This method should be called before any other methods.
    */
   connect(): Promise<void>;
+
+  /**
+   * Disconnect from the database. This method should be called when
+   * the database is no longer needed.
+   */
+  disconnect(): Promise<void>;
   /**
    * Retrieves a single record from the database using the id (primary key)
    * as the lookup key. Returns null if the record does not exist.
