@@ -4,7 +4,7 @@ export type DatabaseRecord = {
 
 export type PaginatedDatabaseResponse = {
   items: DatabaseRecord[];
-  last: string;
+  last: string|null;
 }
 
 export interface IDatabase {
