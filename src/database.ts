@@ -1,10 +1,15 @@
 export type DatabaseRecord = {
   id: string;
-}
+};
 
 export type PaginatedDatabaseResponse = {
   items: DatabaseRecord[];
-  last: string|null;
+  last: string | null;
+};
+
+enum SortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
 }
 
 export interface IDatabase {
@@ -22,7 +27,7 @@ export interface IDatabase {
   /**
    * Retrieves a single record from the database using the id (primary key)
    * as the lookup key. Returns null if the record does not exist.
-   * @param id 
+   * @param id
    */
   getOne(id: string): Promise<DatabaseRecord>;
 
@@ -35,7 +40,7 @@ export interface IDatabase {
    * Pulls records from the database using a list of ids.
    * Missing records will be returned as Null. Returns
    * an array of records in the same order as the ids.
-   * @param ids 
+   * @param ids
    */
   getMany(ids: string[]): Promise<PaginatedDatabaseResponse>;
 
@@ -43,33 +48,39 @@ export interface IDatabase {
    * Pulls records from the database using an arbitrary query.
    * @param query An object containing the query parameters
    */
-  query(query: any): Promise<PaginatedDatabaseResponse>;
+  query(params: {
+    query: any;
+    last: string;
+    pageSize: number;
+    sortKey: string;
+    sortDir: SortDirection;
+  }): Promise<PaginatedDatabaseResponse>;
 
   /**
    * Creates a new record in the database. Fails if the record
    * already exists.
-   * @param record 
+   * @param record
    */
   create(record: DatabaseRecord): Promise<DatabaseRecord>;
 
   /**
    * Updates only fields that are present in the record. Fails
    * if the record does not exist.
-   * @param record 
+   * @param record
    */
   update(record: DatabaseRecord): Promise<DatabaseRecord>;
 
   /**
    * Updates only fields that are present in the record. Creates
    * the record if it does not exist.
-   * @param record 
+   * @param record
    */
   upsert(record: DatabaseRecord): Promise<DatabaseRecord>;
 
   /**
    * Removes a record from the database. Fails if the record
    * does not exist.
-   * @param id 
+   * @param id
    */
   delete(id: string): Promise<void>;
 
@@ -77,9 +88,9 @@ export interface IDatabase {
    * Atomically increments a number field in the database. Fails
    * if the record does not exist or the field is not a number.
    * If the field does not exist, it will be created.
-   * @param id 
-   * @param key 
-   * @param value 
+   * @param id
+   * @param key
+   * @param value
    */
   increment(id: string, key: string, value: number): Promise<DatabaseRecord>;
 
@@ -87,9 +98,9 @@ export interface IDatabase {
    * Adds a value to a list field in the database. Fails if the
    * record does not exist or the field is not a list. If the field does
    * not exist, it will be created.
-   * @param id 
-   * @param key 
-   * @param value 
+   * @param id
+   * @param key
+   * @param value
    */
   appendToList(id: string, key: string, value: any): Promise<DatabaseRecord>;
 
@@ -97,9 +108,9 @@ export interface IDatabase {
    * Removes a value from a list field in the database. Fails if the
    * record does not exist or the field is not a list. If the field does
    * not exist, it will be created.
-   * @param id 
-   * @param key 
-   * @param value 
+   * @param id
+   * @param key
+   * @param value
    */
   removeFromList(id: string, key: string, value: any): Promise<DatabaseRecord>;
 
@@ -107,9 +118,9 @@ export interface IDatabase {
    * Adds a value to a set field in the database. Fails if the
    * record does not exist or the field is not a set. If the field does
    * not exist, it will be created.
-   * @param id 
-   * @param key 
-   * @param value 
+   * @param id
+   * @param key
+   * @param value
    */
   addToSet(id: string, key: string, value: any): Promise<DatabaseRecord>;
 
@@ -117,9 +128,9 @@ export interface IDatabase {
    * Removes a value from a set field in the database. Fails if the
    * record does not exist or the field is not a set. If the field does
    * not exist, it will be created.
-   * @param id 
-   * @param key 
-   * @param value 
+   * @param id
+   * @param key
+   * @param value
    */
   removeFromSet(id: string, key: string, value: any): Promise<DatabaseRecord>;
 }
