@@ -5,7 +5,7 @@ export type PaginatedDatabaseResponse = {
     items: DatabaseRecord[];
     last: string | null;
 };
-declare enum SortDirection {
+export declare enum SortDirection {
     ASC = "ASC",
     DESC = "DESC"
 }
@@ -118,4 +118,3 @@ export interface IDatabase {
      */
     removeFromSet(id: string, key: string, value: any): Promise<DatabaseRecord>;
 }
-export {};
