@@ -45,8 +45,8 @@ export interface IDatabase {
   getMany(ids: string[]): Promise<PaginatedDatabaseResponse>;
 
   /**
-   * Pulls records from the database using an arbitrary query.
-   * @param query An object containing the query parameters
+   * Retrieves a paginated list of records from the database.
+   * @param params Configuration object for the query
    */
   query(params: {
     query: any;
