@@ -1,5 +1,6 @@
 export interface DatabaseRecord {
   id: string;
+  [propName: string]: any;
 }
 
 export interface PaginatedDatabaseResponse {
