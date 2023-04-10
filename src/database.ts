@@ -50,7 +50,7 @@ export interface IDatabase {
    */
   query(params: {
     query: any;
-    last: string;
+    last?: string;
     pageSize: number;
     sortKey: string;
     sortDir: SortDirection;
