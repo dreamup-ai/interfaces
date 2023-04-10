@@ -1,0 +1,19 @@
+{
+  "name": "interfaces",
+  "version": "1.0.0",
+  "description": "typescript interfaces for the pluggable components of dreamup.ai",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamup-ai/interfaces.git"
+  },
+  "author": "Shawn Rushefsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dreamup-ai/interfaces/issues"
+  },
+  "homepage": "https://github.com/dreamup-ai/interfaces#readme"
+}
