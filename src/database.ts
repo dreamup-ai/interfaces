@@ -8,6 +8,10 @@ export type PaginatedDatabaseResponse = {
 }
 
 export interface IDatabase {
+  /**
+   * Perform any necessary initialization and connect to the database.
+   * This method should be called before any other methods.
+   */
   connect(): Promise<void>;
   /**
    * Retrieves a single record from the database using the id (primary key)
