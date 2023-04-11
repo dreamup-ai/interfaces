@@ -35,7 +35,7 @@ export interface IDatabase {
   /**
    * Pulls all records from the database
    */
-  getAll(last?: string): Promise<PaginatedDatabaseResponse>;
+  getAll(last?: string, pageSize?: number): Promise<PaginatedDatabaseResponse>;
 
   /**
    * Pulls records from the database using a list of ids.
