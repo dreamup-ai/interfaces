@@ -26,6 +26,10 @@ export interface IQueue {
      * @throws Error if the queue is not found
      */
     receiveMessages(num?: number, timeoutSeconds?: number): Promise<IQueueMessage[]>;
+    /**
+     * Delete the queue. This method should be called when the queue is no longer needed.
+     */
+    delete(): Promise<void>;
 }
 export interface IQueueManager {
     /**
@@ -40,11 +44,6 @@ export interface IQueueManager {
      * @param queueName The name of the queue to retrieve
      */
     getQueue(queueName: string): Promise<IQueue>;
-    /**
-     *
-     * @param queueName The name of the queue to delete
-     */
-    deleteQueue(queueName: string): Promise<void>;
     /**
      * Return all queues that are currently managed by this queue manager
      */
