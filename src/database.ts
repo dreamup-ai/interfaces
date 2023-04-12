@@ -1,10 +1,10 @@
-export interface DatabaseRecord {
+export interface IDatabaseRecord {
   id: string;
   [propName: string]: any;
 }
 
-export interface PaginatedDatabaseResponse {
-  items: DatabaseRecord[];
+export interface IPaginatedDatabaseResponse {
+  items: IDatabaseRecord[];
   last: string | null;
 }
 
@@ -13,7 +13,7 @@ export enum SortDirection {
   DESC = "DESC",
 }
 
-export interface IDatabase {
+export interface IDatabaseTable {
   /**
    * Perform any necessary initialization and connect to the database.
    * This method should be called before any other methods.
@@ -30,12 +30,12 @@ export interface IDatabase {
    * as the lookup key. Returns null if the record does not exist.
    * @param id
    */
-  getOne(id: string): Promise<DatabaseRecord>;
+  getOne(id: string): Promise<IDatabaseRecord>;
 
   /**
    * Pulls all records from the database
    */
-  getAll(last?: string, pageSize?: number): Promise<PaginatedDatabaseResponse>;
+  getAll(last?: string, pageSize?: number): Promise<IPaginatedDatabaseResponse>;
 
   /**
    * Pulls records from the database using a list of ids.
@@ -43,7 +43,7 @@ export interface IDatabase {
    * an array of records in the same order as the ids.
    * @param ids
    */
-  getMany(ids: string[]): Promise<PaginatedDatabaseResponse>;
+  getMany(ids: string[]): Promise<IPaginatedDatabaseResponse>;
 
   /**
    * Retrieves a paginated list of records from the database.
@@ -55,28 +55,28 @@ export interface IDatabase {
     pageSize: number;
     sortKey: string;
     sortDir: SortDirection;
-  }): Promise<PaginatedDatabaseResponse>;
+  }): Promise<IPaginatedDatabaseResponse>;
 
   /**
    * Creates a new record in the database. Fails if the record
    * already exists.
    * @param record
    */
-  create(record: DatabaseRecord): Promise<DatabaseRecord>;
+  create(record: IDatabaseRecord): Promise<IDatabaseRecord>;
 
   /**
    * Updates only fields that are present in the record. Fails
    * if the record does not exist.
    * @param record
    */
-  update(record: DatabaseRecord): Promise<DatabaseRecord>;
+  update(record: IDatabaseRecord): Promise<IDatabaseRecord>;
 
   /**
    * Updates only fields that are present in the record. Creates
    * the record if it does not exist.
    * @param record
    */
-  upsert(record: DatabaseRecord): Promise<DatabaseRecord>;
+  upsert(record: IDatabaseRecord): Promise<IDatabaseRecord>;
 
   /**
    * Removes a record from the database. Fails if the record
@@ -93,7 +93,7 @@ export interface IDatabase {
    * @param key
    * @param value
    */
-  increment(id: string, key: string, value: number): Promise<DatabaseRecord>;
+  increment(id: string, key: string, value: number): Promise<IDatabaseRecord>;
 
   /**
    * Adds a value to a list field in the database. Fails if the
@@ -103,7 +103,7 @@ export interface IDatabase {
    * @param key
    * @param value
    */
-  appendToList(id: string, key: string, value: any): Promise<DatabaseRecord>;
+  appendToList(id: string, key: string, value: any): Promise<IDatabaseRecord>;
 
   /**
    * Removes a value from a list field in the database. Fails if the
@@ -113,7 +113,7 @@ export interface IDatabase {
    * @param key
    * @param value
    */
-  removeFromList(id: string, key: string, value: any): Promise<DatabaseRecord>;
+  removeFromList(id: string, key: string, value: any): Promise<IDatabaseRecord>;
 
   /**
    * Adds a value to a set field in the database. Fails if the
@@ -123,7 +123,7 @@ export interface IDatabase {
    * @param key
    * @param value
    */
-  addToSet(id: string, key: string, value: any): Promise<DatabaseRecord>;
+  addToSet(id: string, key: string, value: any): Promise<IDatabaseRecord>;
 
   /**
    * Removes a value from a set field in the database. Fails if the
@@ -133,5 +133,5 @@ export interface IDatabase {
    * @param key
    * @param value
    */
-  removeFromSet(id: string, key: string, value: any): Promise<DatabaseRecord>;
+  removeFromSet(id: string, key: string, value: any): Promise<IDatabaseRecord>;
 }
