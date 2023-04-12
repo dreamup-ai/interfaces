@@ -32,7 +32,7 @@ export interface IQueue {
   receiveMessages(
     num?: number,
     timeoutSeconds?: number
-  ): Promise<IQueueMessage[] | null>;
+  ): Promise<IQueueMessage[]>;
 }
 
 export interface IQueueManager {
