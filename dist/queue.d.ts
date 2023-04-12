@@ -25,7 +25,7 @@ export interface IQueue {
      * @returns The messages that were received. returns an empty array if the timeout is reached.
      * @throws Error if the queue is not found
      */
-    receiveMessages(num?: number, timeoutSeconds?: number): Promise<IQueueMessage[] | null>;
+    receiveMessages(num?: number, timeoutSeconds?: number): Promise<IQueueMessage[]>;
 }
 export interface IQueueManager {
     /**
