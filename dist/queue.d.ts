@@ -20,9 +20,9 @@ export interface IQueue {
      */
     sendMessage(message: any): Promise<void>;
     /**
-     * Receive a message from the queue. This method will block until a message is available.
-     * The message should be deleted after it has been processed.
-     * @returns The message from the queue, or null if the queue is empty
+     * Receive an array of message from the queue. This method will block until a message is available, or
+     * the timeout is reached. Each message should be deleted after it has been processed.
+     * @returns The messages that were received. returns an empty array if the timeout is reached.
      * @throws Error if the queue is not found
      */
     receiveMessages(num?: number, timeoutSeconds?: number): Promise<IQueueMessage[] | null>;
