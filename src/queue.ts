@@ -59,5 +59,5 @@ export interface IQueueManager {
   /**
    * Return all queues that are currently managed by this queue manager
    */
-  listQueues(): Promise<IQueue[]>;
+  listQueues(prefix?: string): Promise<IQueue[]>;
 }
