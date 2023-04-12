@@ -29,7 +29,10 @@ export interface IQueue {
    * @returns The message from the queue, or null if the queue is empty
    * @throws Error if the queue is not found
    */
-  receiveMessage(): Promise<IQueueMessage | null>;
+  receiveMessages(
+    num?: number,
+    timeoutSeconds?: number
+  ): Promise<IQueueMessage[] | null>;
 }
 
 export interface IQueueManager {
