@@ -56,4 +56,6 @@ export type QueueOptions = {
     maxReceiveCount?: number;
     visibilityTimeoutSeconds?: number;
     receiveMessageWaitTimeSeconds?: number;
+    encrypted?: boolean;
+    fifo?: boolean;
 };
