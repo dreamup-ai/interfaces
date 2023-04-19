@@ -50,10 +50,10 @@ export interface IQueueManager {
     listQueues(prefix?: string): Promise<IQueue[]>;
 }
 export type QueueOptions = {
-    DelaySeconds?: number;
-    MessageRetentionSeconds?: number;
-    DeadLetterQueue?: string;
-    MaxReceiveCount?: number;
-    VisibilityTimeoutSeconds?: number;
-    ReceiveMessageWaitTimeSeconds?: number;
+    delaySeconds?: number;
+    messageRetentionSeconds?: number;
+    deadLetterQueue?: string;
+    maxReceiveCount?: number;
+    visibilityTimeoutSeconds?: number;
+    receiveMessageWaitTimeSeconds?: number;
 };

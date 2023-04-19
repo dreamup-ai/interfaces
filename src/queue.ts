@@ -62,10 +62,10 @@ export interface IQueueManager {
 }
 
 export type QueueOptions = {
-  DelaySeconds?: number;
-  MessageRetentionSeconds?: number;
-  DeadLetterQueue?: string;
-  MaxReceiveCount?: number;
-  VisibilityTimeoutSeconds?: number;
-  ReceiveMessageWaitTimeSeconds?: number;
+  delaySeconds?: number;
+  messageRetentionSeconds?: number;
+  deadLetterQueue?: string;
+  maxReceiveCount?: number;
+  visibilityTimeoutSeconds?: number;
+  receiveMessageWaitTimeSeconds?: number;
 };
