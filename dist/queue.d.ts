@@ -38,7 +38,7 @@ export interface IQueueManager {
      * @returns The queue that was created
      * @throws Error if the queue could not be created
      */
-    createQueue(queueName: string): Promise<IQueue>;
+    createQueue(queueName: string, opts: QueueOptions): Promise<IQueue>;
     /**
      *
      * @param queueName The name of the queue to retrieve
@@ -49,3 +49,11 @@ export interface IQueueManager {
      */
     listQueues(prefix?: string): Promise<IQueue[]>;
 }
+export type QueueOptions = {
+    DelaySeconds?: number;
+    MessageRetentionSeconds?: number;
+    DeadLetterQueue?: string;
+    MaxReceiveCount?: number;
+    VisibilityTimeoutSeconds?: number;
+    ReceiveMessageWaitTimeSeconds?: number;
+};
